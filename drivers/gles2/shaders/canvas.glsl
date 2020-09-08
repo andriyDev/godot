@@ -360,6 +360,7 @@ LIGHT_SHADER_CODE
 void main() {
 
 	vec4 color = color_interp;
+	vec4 emissive = vec4(0,0,0,0);
 	vec2 uv = uv_interp;
 #ifdef USE_FORCE_REPEAT
 	//needs to use this to workaround GLES2/WebGL1 forcing tiling that textures that don't support it
@@ -612,6 +613,9 @@ FRAGMENT_SHADER_CODE
 
 //use lighting
 #endif
-
+#if defined(EMISSIVE_USED)
+	if(color.a == 0) { color.rgb = vec3(0,0,0); }
+	color = mix(color, emissive, emissive.a);
+#endif
 	gl_FragColor = color;
 }

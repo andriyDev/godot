@@ -217,6 +217,7 @@ ShaderTypes::ShaderTypes() {
 	shader_modes[VS::SHADER_CANVAS_ITEM].functions["fragment"].built_ins["NORMALMAP_DEPTH"] = ShaderLanguage::TYPE_FLOAT;
 	shader_modes[VS::SHADER_CANVAS_ITEM].functions["fragment"].built_ins["UV"] = constt(ShaderLanguage::TYPE_VEC2);
 	shader_modes[VS::SHADER_CANVAS_ITEM].functions["fragment"].built_ins["COLOR"] = ShaderLanguage::TYPE_VEC4;
+	shader_modes[VS::SHADER_CANVAS_ITEM].functions["fragment"].built_ins["EMISSIVE"] = ShaderLanguage::TYPE_VEC4;
 	shader_modes[VS::SHADER_CANVAS_ITEM].functions["fragment"].built_ins["MODULATE"] = constt(ShaderLanguage::TYPE_VEC4);
 	shader_modes[VS::SHADER_CANVAS_ITEM].functions["fragment"].built_ins["TEXTURE"] = constt(ShaderLanguage::TYPE_SAMPLER2D);
 	shader_modes[VS::SHADER_CANVAS_ITEM].functions["fragment"].built_ins["TEXTURE_PIXEL_SIZE"] = constt(ShaderLanguage::TYPE_VEC2);
