@@ -614,7 +614,6 @@ FRAGMENT_SHADER_CODE
 //use lighting
 #endif
 #if defined(EMISSIVE_USED)
-	if(color.a == 0) { color.rgb = vec3(0,0,0); }
 	color = mix(color, emissive, emissive.a);
 #endif
 	gl_FragColor = color;
