@@ -39,7 +39,7 @@
 #include "servers/physics_server_2d.h"
 
 int TileMap::_get_quadrant_size() const {
-	if (use_y_sort) {
+	if (is_y_sort_enabled()) {
 		return 1;
 	} else {
 		return quadrant_size;
@@ -1577,14 +1577,9 @@ Vector2 TileMap::world_to_map(const Vector2 &p_pos) const {
 
 void TileMap::set_y_sort_enabled(bool p_enable) {
 	_clear_quadrants();
-	use_y_sort = p_enable;
-	RS::get_singleton()->canvas_item_set_sort_children_by_y(get_canvas_item(), use_y_sort);
+	Node2D::set_y_sort_enabled(p_enable);
 	_recreate_quadrants();
 	emit_signal("settings_changed");
-}
-
-bool TileMap::is_y_sort_enabled() const {
-	return use_y_sort;
 }
 
 void TileMap::set_compatibility_mode(bool p_enable) {
@@ -1753,9 +1748,6 @@ void TileMap::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("set_clip_uv", "enable"), &TileMap::set_clip_uv);
 	ClassDB::bind_method(D_METHOD("get_clip_uv"), &TileMap::get_clip_uv);
 
-	ClassDB::bind_method(D_METHOD("set_y_sort_enabled", "enable"), &TileMap::set_y_sort_enabled);
-	ClassDB::bind_method(D_METHOD("is_y_sort_enabled"), &TileMap::is_y_sort_enabled);
-
 	ClassDB::bind_method(D_METHOD("set_compatibility_mode", "enable"), &TileMap::set_compatibility_mode);
 	ClassDB::bind_method(D_METHOD("is_compatibility_mode_enabled"), &TileMap::is_compatibility_mode_enabled);
 
@@ -1889,7 +1881,6 @@ TileMap::TileMap() {
 	collision_parent = nullptr;
 	use_kinematic = false;
 	navigation = nullptr;
-	use_y_sort = false;
 	compatibility_mode = false;
 	centered_textures = false;
 	occluder_light_mask = 1;

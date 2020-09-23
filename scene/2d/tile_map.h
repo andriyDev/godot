@@ -183,7 +183,6 @@ private:
 	Rect2 used_size_cache;
 	bool used_size_cache_dirty;
 	bool quadrant_order_dirty;
-	bool use_y_sort;
 	bool compatibility_mode;
 	bool centered_textures;
 	bool clip_uv;
@@ -315,8 +314,7 @@ public:
 	Vector2 map_to_world(const Vector2 &p_pos, bool p_ignore_ofs = false) const;
 	Vector2 world_to_map(const Vector2 &p_pos) const;
 
-	void set_y_sort_enabled(bool p_enable);
-	bool is_y_sort_enabled() const;
+	virtual void set_y_sort_enabled(bool p_enable) override;
 
 	void set_compatibility_mode(bool p_enable);
 	bool is_compatibility_mode_enabled() const;
